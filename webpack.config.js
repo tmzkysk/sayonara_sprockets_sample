@@ -1,17 +1,28 @@
-const path = require('path');
+const path = require('path')
 const current = process.cwd()
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
-module.exports = {
+const commonSetting = {
   mode: process.env.NODE_ENV || "development",
-  entry: {"javascripts/tests/index.js": "./front/javascripts/root/tests/index.tsx"},
-  output: {
-    filename: "[name]",
-    path: path.resolve(current, "app/assets"),
-    publicPath: "http://localhost:8090/assets"
-  },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss", ".sass"]
   },
+  devServer: {
+    port: 8090
+  }
+}
+
+let jsSetting = {
+  entry: {
+    "javascripts/tests/index": "./front/javascripts/root/tests/index.tsx"
+  },
+  output: {
+    filename: "[name]-[hash].js",
+    path: path.resolve(current, "public/assets"),
+    publicPath: "assets/"
+  },
+  plugins: [ new ManifestPlugin({fileName: 'javascripts/webpack-manifest.json'}) ],
   module: {
     rules: [
       {
@@ -23,9 +34,7 @@ module.exports = {
             loader: 'tslint-loader',
             options: {
               typeCheck: true,
-              // tslint時に自動的に修正しない
               fix: false,
-              // warningをエラーにする
               emitErrors: true
             },
           },
@@ -33,8 +42,28 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  }
+}
+
+let cssSetting = {
+  entry: {
+    "stylesheets/tests/index": "./front/stylesheets/root/tests/index.scss"
   },
-  devServer: {
-    port: 8090
+  output: {
+    filename: "[name]-[hash].css",
+    path: path.resolve(current, "public/assets"),
+    publicPath: "assets/"
   },
-};
+  plugins: [ new ManifestPlugin({fileName: 'stylesheets/webpack-manifest.json'}), new ExtractTextPlugin("[name]-[hash].css") ],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        loaders: ExtractTextPlugin.extract({ use: 'css-loader?-url&minimize&sourceMap!sass-loader' }),
+        exclude: /node_modules/
+      }
+    ]
+  },
+}
+
+module.exports = [Object.assign({}, commonSetting, jsSetting), Object.assign({}, commonSetting, cssSetting)];
