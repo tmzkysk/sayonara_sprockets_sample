@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 import { Input } from '../../components/input'
 import { Button } from '../../components/button'
 import { Output } from '../../components/output'
+import { FaBeer } from 'react-icons/fa'
 
 /** Helloコンポーネントで取得するpropsの型定義 */
 interface HelloProps {
@@ -40,6 +41,7 @@ class Hello extends React.Component<HelloProps, HelloState> {
     const { greeting } = this.props
     return (
       <div>
+        <FaBeer />
         <Input name={this.state.inputName} handleChange={this.handleChange} />
         <Button handleClick={this.handleClick} />
         <Output greeting={greeting} name={this.state.outputName} />
