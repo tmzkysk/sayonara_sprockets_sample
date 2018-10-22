@@ -14,15 +14,13 @@ const commonSetting = {
 }
 
 let jsSetting = {
-  entry: {
-    "javascripts/tests/index": "./front/javascripts/root/tests/index.tsx"
-  },
+  entry: {"javascripts/tests/index": "./front/javascripts/root/tests/index.tsx"},
   output: {
     filename: "[name]-[hash].js",
     path: path.resolve(current, "public/assets"),
     publicPath: "assets/"
   },
-  plugins: [ new ManifestPlugin({fileName: 'javascripts/webpack-manifest.json'}) ],
+  plugins: [ new ManifestPlugin({fileName: 'javascripts/webpack-manifest.json'}), new ExtractTextPlugin("[name]-[hash].css") ],
   module: {
     rules: [
       {
@@ -38,6 +36,13 @@ let jsSetting = {
               emitErrors: true
             },
           },
+        ],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js?$/,
+        use: [
+          { loader: "babel-loader" },
         ],
         exclude: /node_modules/
       }
@@ -58,8 +63,23 @@ let cssSetting = {
   module: {
     rules: [
       {
+        test: /\.png?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]-[hash].[ext]',
+              outputPath: "images",
+              context: path.resolve(__dirname, 'public/assets'),
+              publicPath: "assets/images"
+            }
+          },
+        ],
+        exclude: /node_modules/
+      },
+      {
         test: /\.scss$/,
-        loaders: ExtractTextPlugin.extract({ use: 'css-loader?-url&minimize&sourceMap!sass-loader' }),
+        loaders: ExtractTextPlugin.extract({ use: 'css-loader?&minimize&sourceMap!sass-loader' }),
         exclude: /node_modules/
       }
     ]

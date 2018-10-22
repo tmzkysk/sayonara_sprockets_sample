@@ -1,6 +1,6 @@
 module ApplicationHelper
   def javascript_tag
-    return javascript_include_tag "http://localhost:8090/assets/javascripts/tests/index.js" if ENV['DEBUG']
+    # return javascript_include_tag "http://localhost:8090/assets/javascripts/tests/index.js"
 
     manifest = Rails.application.config.assets.webpack_js_manifest
     path     = "javascripts/#{controller.controller_name}/#{controller.action_name}.js"
@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def stylesheet_tag
-    return stylesheet_link_tag "http://localhost:8090/assets/stylesheets/tests/index.css" if ENV['DEBUG']
+    # return stylesheet_link_tag "http://localhost:8090/assets/stylesheets/tests/index.css"
 
     manifest = Rails.application.config.assets.webpack_css_manifest
     path     = "stylesheets/#{controller.controller_name}/#{controller.action_name}.css"

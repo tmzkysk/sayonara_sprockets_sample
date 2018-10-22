@@ -5,6 +5,8 @@ import { Input } from '../../components/input'
 import { Button } from '../../components/button'
 import { Output } from '../../components/output'
 import { FaBeer } from 'react-icons/fa'
+import SayHello from '../../lib/test'
+import Test from '../../components/test'
 
 /** Helloコンポーネントで取得するpropsの型定義 */
 interface HelloProps {
@@ -20,7 +22,7 @@ class Hello extends React.Component<HelloProps, HelloState> {
   constructor(props: HelloProps) {
     super(props)
     this.state = {
-      inputName: '',
+      inputName: Test(),
       outputName: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -40,8 +42,9 @@ class Hello extends React.Component<HelloProps, HelloState> {
   render(): JSX.Element {
     const { greeting } = this.props
     return (
-      <div>
+      <div className="hoge">
         <FaBeer />
+        {SayHello()}
         <Input name={this.state.inputName} handleChange={this.handleChange} />
         <Button handleClick={this.handleClick} />
         <Output greeting={greeting} name={this.state.outputName} />
