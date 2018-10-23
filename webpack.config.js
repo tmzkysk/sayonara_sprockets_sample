@@ -86,36 +86,7 @@ let cssSetting = {
   },
 }
 
-// let imgSetting = {
-//   entry: {
-//     "image": "./front/images/IMG_8048.jpg"
-//   },
-//   output: {
-//     filename: "[name]-[hash].[ext]",
-//     path: path.resolve(current, "public/assets"),
-//     publicPath: "assets/"
-//   },
-//   plugins: [ new ManifestPlugin({fileName: 'image/webpack-manifest.json'}) ],
-//   module: {
-//     rules: [
-//       {
-//         test: /\.png?$/,
-//         use: [
-//           {
-//             loader: 'file-loader',
-//             options: {
-//               name: 'images/[name]-[hash].[ext]'
-//             }
-//           },
-//         ],
-//         exclude: /node_modules/
-//       }
-//     ]
-//   },
-// }
-
 module.exports = [
   Object.assign({}, commonSetting, jsSetting),
   Object.assign({}, commonSetting, cssSetting)
-  // Object.assign({}, commonSetting, imgSetting)
 ];
