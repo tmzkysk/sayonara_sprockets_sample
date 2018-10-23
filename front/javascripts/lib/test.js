@@ -1,6 +1,6 @@
 // @flow
-import SayHoge, { type hoge } from './hoge';
+// import SayHoge, { type hoge } from './hoge';
 
-export default function SayHello(): hoge {
+export default function SayHello(): string {
   return 'hoge!';
 }
