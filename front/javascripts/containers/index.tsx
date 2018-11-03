@@ -6,10 +6,14 @@ import { IndexAction, IndexStore } from '@/modules/index'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
+interface State {
+  IndexReducer: IndexStore
+}
+
 // Connect to Redux
-function mapStateToProps(state: IndexStore) {
+function mapStateToProps(state: State) {
   return {
-    value: state.value
+    value: state.IndexReducer.value
   }
 }
 function mapDispatchToProps(dispatch: Dispatch) {

@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   get 'tests/index', 'tests#index'
-  get 'tests/hoge', 'tests#hoge'
+  get 'tests/show', to: 'tests#index'
 end

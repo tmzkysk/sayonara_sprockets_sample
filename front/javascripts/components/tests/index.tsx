@@ -7,6 +7,7 @@ import { Output } from '@/components/output'
 import { FaBeer } from 'react-icons/fa'
 import SayHello from '@/lib/test'
 import Test from '@/components/test'
+import { Link } from 'react-router-dom'
 
 /** Helloコンポーネントで取得するpropsの型定義 */
 interface HelloProps {
@@ -50,6 +51,7 @@ export default class Hello extends React.Component<HelloProps, HelloState> {
         <Input name={this.state.inputName} handleChange={this.handleChange} />
         <Button handleClick={this.handleClick} />
         <button onClick={send}>文言変更</button>
+        <Link to="/tests/show">showへ</Link>
         <Output greeting={value} name={this.state.outputName} />
       </div>
     )
