@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 interface OutputProps {
-  greeting: string
+  greeting: string | null
   name: string
 }
 

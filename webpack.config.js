@@ -6,7 +6,10 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const commonSetting = {
   mode: process.env.NODE_ENV || "development",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss", ".sass"]
+    extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss", ".sass"],
+    alias: {
+      "@": path.resolve(current, "front/javascripts")
+    }
   },
   devServer: {
     port: 8090
@@ -16,7 +19,8 @@ const commonSetting = {
 let jsSetting = {
   entry: {"javascripts/tests/index": "./front/javascripts/root/tests/index.tsx"},
   output: {
-    filename: "[name]-[hash].js",
+    filename: "[name].js",
+    // filename: "[name]-[hash].js",
     path: path.resolve(current, "public/assets"),
     publicPath: "assets/"
   },
@@ -55,7 +59,8 @@ let cssSetting = {
     "stylesheets/tests/index": "./front/stylesheets/root/tests/index.scss"
   },
   output: {
-    filename: "[name]-[hash].css",
+    // filename: "[name]-[hash].css",
+    filename: "[name]-.css",
     path: path.resolve(current, "public/assets"),
     publicPath: "assets/"
   },
