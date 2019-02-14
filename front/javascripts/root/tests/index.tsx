@@ -24,3 +24,5 @@ ReactDOM.render(
   </Provider>,
   document.querySelector('#content')
 )
+
+ReactDOM.render(<div>test</div>, document.querySelector('#hoge'))

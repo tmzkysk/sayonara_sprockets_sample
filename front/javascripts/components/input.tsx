@@ -6,7 +6,7 @@ interface InputProps {
   handleChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
-export const Input: React.SFC<InputProps> = (props: InputProps) => {
+export const Input = (props: InputProps) => {
   return (
     <input
       type="text"

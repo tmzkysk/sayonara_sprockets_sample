@@ -1,6 +1,6 @@
 /* reactとreact-domの読み込み */
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Hello from '@/components/tests/index'
 import { IndexAction, IndexStore } from '@/modules/index'
 import { Dispatch } from 'redux'

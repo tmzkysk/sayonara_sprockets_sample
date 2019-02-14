@@ -5,7 +5,7 @@ interface ButtonProps {
   handleClick: () => void
 }
 
-export const Button: React.SFC<ButtonProps> = props => {
+export const Button = (props: ButtonProps) => {
   const { handleClick }: ButtonProps = props
   return <button onClick={handleClick}>Say Hello</button>
 }

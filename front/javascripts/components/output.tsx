@@ -1,12 +1,11 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
 
 interface OutputProps {
   greeting: string | null
   name: string
 }
 
-export const Output: React.SFC<OutputProps> = props => {
+export const Output = (props: OutputProps) => {
   const { greeting, name }: OutputProps = props
   const hasName: boolean = name !== ''
   const result: JSX.Element | '' = hasName ? (
